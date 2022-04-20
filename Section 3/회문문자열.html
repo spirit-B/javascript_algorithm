@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s) {
+                let answer = "YES";
+                let letter = s.toLowerCase();
+                if (letter !== letter.split("").reverse().join("")) answer = "NO";
+
+                return answer;
+            }
+
+            let str = "gooG";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
