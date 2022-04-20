@@ -5,13 +5,28 @@
     </head>
     <body>
         <script>
+            // 강의 듣고 나서 혼자 푼 문제
             function solution(arr) {
                 let answer = 0;
-                for (let i = 0; i < arr.length; i++) {
-                    for (let j = 0; j < arr.length; j++) {
-                        let now = arr[i][j];
-                        console.log(now);
-                        if (now > arr[i][j - 1] && now > arr[i][j + 1] && now > arr[i - 1][j] && now > arr[i + 1][j]) answer++;
+                // 현재 위치에서 위, 오른쪽, 아래, 왼쪽 좌표로 이동
+                let dir_x = [-1, 0, 1, 0];
+                let dir_y = [0, 1, 0, -1];
+                let n = arr.length;
+
+                for (let i = 0; i < n; i++) {
+                    for (let j = 0; j < n; j++) {
+                        let isFlag = true;  // 봉우리인지 체크할 변수
+                        for (let k = 0; k < dir_x.length; k++) {
+                            // 비교할 좌표
+                            let moved_x = i + dir_x[k];
+                            let moved_y = j + dir_y[k];
+                            // 존재하지 않는 좌표를 비교하지 않도록 예외처리
+                            if (moved_x >= 0 && moved_x < n && moved_y >= 0 && moved_y < n && arr[moved_x][moved_y] >= arr[i][j]) {
+                                isFlag = false;
+                                break;
+                            }
+                        }
+                        if (isFlag) answer++;
                     }
                 }
                 return answer;
