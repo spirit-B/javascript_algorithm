@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s) {
+                let answer = "";
+                let count = 1;
+                let temp_str = s[0];
+
+                for (let i = 1; i <= s.length; i++) {
+                    if (s[i] === temp_str) count++;
+                    else {
+                        answer += temp_str;
+                        if (count !== 1) {
+                            answer += count;
+                        }
+                        temp_str = s[i];
+                        count = 1;
+                    }
+                }
+
+                return answer;
+            }
+
+            let str = "KKHSSSSSSSE";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
