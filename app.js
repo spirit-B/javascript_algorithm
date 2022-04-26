@@ -1,23 +1,23 @@
-function solution(arr) {
-    let answer = Number.MIN_SAFE_INTEGER;
-    let temp = 0;
-
-    for (let i of arr) {
-        let num_arr = i.toString().split("");
-        let sum = 0;
-        for (let j of num_arr) {
-            j = Number(j);
-            sum += j;
-        }
-        if (sum > temp) {
-            temp = sum;
-            answer = i;
-        } else if (sum === temp) {
-            if (answer < i) answer = i;
+function isPrime(num) {
+    if (num === 1) return false;
+    else {
+        for (let i = 2; i * i <= num; i++) {
+            if (num % i === 0) return false;
         }
     }
+    return true;
+}
+
+function solution(arr) {
+    let answer = [];
+
+    for (let i of arr) {
+        let temp = Number(i.toString().split("").reverse().join(""));
+        if (isPrime(temp)) answer.push(temp);
+    }
+
     return answer;
 }
 
-let arr = [128, 460, 603, 40, 521, 137, 123];
+let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
 console.log(solution(arr));
