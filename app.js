@@ -1,23 +1,26 @@
-function isPrime(num) {
-    if (num === 1) return false;
-    else {
-        for (let i = 2; i * i <= num; i++) {
-            if (num % i === 0) return false;
+function solution(arr) {
+    let answer = 0;
+    let m = arr.length;
+    let n = arr[0].length;
+    
+    // i는 멘토, j는 멘티
+    for (let i = 1; i <= n; i++) {
+        for (let j = 1; j <= n; j++) {
+            let count = 0;
+            for (let k = 0; k < m; k++) {
+                let pi = pj = 0;
+                for (let s = 0; s < n; s++) {
+                    if (arr[k][s] === i) pi = s;
+                    if (arr[k][s] === j) pj = s;
+                }
+                if (pi < pj) count++;
+            }
+            if (count === m) answer++;
         }
     }
-    return true;
-}
-
-function solution(arr) {
-    let answer = [];
-
-    for (let i of arr) {
-        let temp = Number(i.toString().split("").reverse().join(""));
-        if (isPrime(temp)) answer.push(temp);
-    }
-
+    
     return answer;
 }
 
-let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+let arr = [[3, 4, 1, 2], [4, 3, 2, 1], [3, 1, 4, 2]];
 console.log(solution(arr));
